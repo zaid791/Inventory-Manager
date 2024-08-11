@@ -37,7 +37,11 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_supplierFragment_to_supplierDetailsFragment"
-            app:destination="@id/supplierDetailsFragment" />
+            app:destination="@id/supplierDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
@@ -61,7 +65,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/addUserFragment"
-        android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
+        android:name="com.example.inventorymanager.details.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
     <fragment
