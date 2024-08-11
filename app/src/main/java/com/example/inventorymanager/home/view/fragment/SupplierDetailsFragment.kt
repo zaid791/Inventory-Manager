@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentInventoryBinding
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
@@ -31,8 +33,13 @@ class SupplierDetailsFragment : Fragment() {
             supplierAmount("06-08-2024", "6500 ₹"),
         )
 
-        SupplierAmountHistoryAdapter = SupplierAmountHistoryAdapter(dataList)
-        binding.rvSupplierAmountHistory.adapter = SupplierAmountHistoryAdapter
+        binding.rvSupplierAmountHistory.layoutManager = LinearLayoutManager(context)
+
+        binding.rvSupplierAmountHistory.adapter = SupplierAmountHistoryAdapter(dataList)
+
+        binding.addNewPurchase.setOnClickListener {
+            findNavController().navigate(SupplierDetailsFragmentDirections.actionSupplierDetailsFragmentToNewProductPurchaseFromSupplierFragment())
+        }
 
         return binding.root
     }

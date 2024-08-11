@@ -35,9 +35,7 @@ class CustomerFragment : Fragment() {
         val list = mainViewModel.list
 
         binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(list) { selectedItem ->
-
-            }
+            adapter = BuyerSellerAdapter(list){}
             layoutManager = LinearLayoutManager(requireContext())
         }
     }

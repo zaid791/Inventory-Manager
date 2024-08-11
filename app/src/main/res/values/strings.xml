@@ -73,4 +73,9 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="add_user">Add User</string>
+    <string-array name="unit_array">
+        <item>kg</item>
+        <item>ml</item>
+        <item>unit</item>
+    </string-array>
 </resources>

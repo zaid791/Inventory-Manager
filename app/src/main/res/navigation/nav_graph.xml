@@ -52,7 +52,11 @@
         android:id="@+id/supplierDetailsFragment"
         android:name="com.example.inventorymanager.home.view.fragment.SupplierDetailsFragment"
         android:label="fragment_supplier_details"
-        tools:layout="@layout/fragment_supplier_details" />
+        tools:layout="@layout/fragment_supplier_details" >
+        <action
+            android:id="@+id/action_supplierDetailsFragment_to_newProductPurchaseFromSupplierFragment"
+            app:destination="@id/newProductPurchaseFromSupplierFragment" />
+    </fragment>
 
     <activity
         android:id="@+id/mainActivity"
@@ -64,4 +68,9 @@
         android:name="com.example.inventorymanager.details.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
+    <fragment
+        android:id="@+id/newProductPurchaseFromSupplierFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.NewProductPurchaseFromSupplierFragment"
+        android:label="fragment_new_product_purchase_from_supplier"
+        tools:layout="@layout/fragment_new_product_purchase_from_supplier" />
 </navigation>
