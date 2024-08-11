@@ -35,6 +35,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_supplierFragment_to_supplierDetailsFragment"
+            app:destination="@id/supplierDetailsFragment" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
@@ -45,7 +48,11 @@
         android:id="@+id/supplierDetailsFragment"
         android:name="com.example.inventorymanager.home.view.fragment.SupplierDetailsFragment"
         android:label="fragment_supplier_details"
-        tools:layout="@layout/fragment_supplier_details" />
+        tools:layout="@layout/fragment_supplier_details" >
+        <action
+            android:id="@+id/action_supplierDetailsFragment_to_newProductPurchaseFromSupplierFragment"
+            app:destination="@id/newProductPurchaseFromSupplierFragment" />
+    </fragment>
 
     <activity
         android:id="@+id/mainActivity"
@@ -57,4 +64,9 @@
         android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
+    <fragment
+        android:id="@+id/newProductPurchaseFromSupplierFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.NewProductPurchaseFromSupplierFragment"
+        android:label="fragment_new_product_purchase_from_supplier"
+        tools:layout="@layout/fragment_new_product_purchase_from_supplier" />
 </navigation>

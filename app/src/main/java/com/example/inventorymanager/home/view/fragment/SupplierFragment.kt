@@ -46,6 +46,7 @@ class SupplierFragment : Fragment() {
         binding.rvBuyers.apply {
 
             adapter = BuyerSellerAdapter(list){selectedItem->
+                findNavController().navigate(SupplierFragmentDirections.actionSupplierFragmentToSupplierDetailsFragment())
 
             }
             layoutManager = LinearLayoutManager(requireContext())
