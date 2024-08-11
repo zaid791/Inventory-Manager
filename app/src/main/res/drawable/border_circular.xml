@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@android:color/white"/> <!-- Background color inside the border -->
     <stroke
         android:width="2dp"
-        android:color="#FF000000"/> <!-- Border color and width -->
+        android:color="@color/black"/> <!-- Border color and width -->
     <corners android:radius="8dp"/>
     <padding
         android:left="4dp"
