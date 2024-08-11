@@ -58,7 +58,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add New Item"/>
+                android:text="Add New Item"
+                android:backgroundTint="@color/app_theme"/>
         </LinearLayout>
 
 

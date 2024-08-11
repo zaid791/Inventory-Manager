@@ -9,7 +9,7 @@
         android:id="@+id/customerFragment"
         android:name="com.example.inventorymanager.home.view.fragment.CustomerFragment"
         android:label="fragment_buyer"
-        tools:layout="@layout/fragment_customer" >
+        tools:layout="@layout/fragment_customer">
         <action
             android:id="@+id/action_customerFragment_to_addUserFragment"
             app:destination="@id/addUserFragment"
@@ -27,17 +27,21 @@
         android:id="@+id/supplierFragment"
         android:name="com.example.inventorymanager.home.view.fragment.SupplierFragment"
         android:label="fragment_seller"
-        tools:layout="@layout/fragment_supplier" >
+        tools:layout="@layout/fragment_supplier">
         <action
             android:id="@+id/action_supplierFragment_to_addUserFragment"
             app:destination="@id/addUserFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_supplierFragment_to_supplierDetailsFragment"
-            app:destination="@id/supplierDetailsFragment" />
+            app:destination="@id/supplierDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
@@ -48,10 +52,12 @@
         android:id="@+id/supplierDetailsFragment"
         android:name="com.example.inventorymanager.home.view.fragment.SupplierDetailsFragment"
         android:label="fragment_supplier_details"
-        tools:layout="@layout/fragment_supplier_details" >
+        tools:layout="@layout/fragment_supplier_details">
         <action
             android:id="@+id/action_supplierDetailsFragment_to_newProductPurchaseFromSupplierFragment"
-            app:destination="@id/newProductPurchaseFromSupplierFragment" />
+            app:destination="@id/newProductPurchaseFromSupplierFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
     <activity
@@ -61,7 +67,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/addUserFragment"
-        android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
+        android:name="com.example.inventorymanager.details.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
     <fragment
