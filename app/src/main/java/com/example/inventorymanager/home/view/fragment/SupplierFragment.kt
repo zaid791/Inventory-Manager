@@ -1,6 +1,7 @@
 package com.example.inventorymanager.home.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
+import com.example.inventorymanager.details.view.activity.DetailsActivity
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,15 +40,16 @@ class SupplierFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val list = mainViewModel.list
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+
         fab.setOnClickListener {
-            val action = SupplierFragmentDirections.actionSupplierFragmentToAddUserFragment()
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), DetailsActivity::class.java)
+            startActivity(intent)
         }
 
         binding.rvBuyers.apply {
 
-            adapter = BuyerSellerAdapter(list){selectedItem->
-
+            adapter = BuyerSellerAdapter(list) { _ ->
+                findNavController().navigate(SupplierFragmentDirections.actionSupplierFragmentToSupplierDetailsFragment())
             }
             layoutManager = LinearLayoutManager(requireContext())
         }

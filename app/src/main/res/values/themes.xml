@@ -15,12 +15,12 @@
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
         <!-- Background, surface, and error colors -->
-<!--        <item name="android:background">@color/colorBackground</item>-->
-<!--        <item name="colorSurface">@color/colorSurface</item>-->
-<!--        <item name="colorError">@color/colorError</item>-->
-<!--        <item name="colorOnBackground">@color/colorOnBackground</item>-->
-<!--        <item name="colorOnSurface">@color/colorOnSurface</item>-->
-<!--        <item name="colorOnError">@color/colorOnError</item>-->
+        <!--        <item name="android:background">@color/colorBackground</item>-->
+        <!--        <item name="colorSurface">@color/colorSurface</item>-->
+        <!--        <item name="colorError">@color/colorError</item>-->
+        <!--        <item name="colorOnBackground">@color/colorOnBackground</item>-->
+        <!--        <item name="colorOnSurface">@color/colorOnSurface</item>-->
+        <!--        <item name="colorOnError">@color/colorOnError</item>-->
     </style>
 
     <style name="Theme.InventoryManager" parent="Base.Theme.InventoryManager" />
@@ -36,5 +36,10 @@
         <item name="cornerSizeBottomLeft">30dp</item>
         <item name="cornerSizeBottomRight">30dp</item>
         <item name="elevation">60dp</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Base.Theme.InventoryManager" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 </resources>
