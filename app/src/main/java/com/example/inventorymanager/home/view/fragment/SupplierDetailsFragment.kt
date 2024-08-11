@@ -1,21 +1,22 @@
 package com.example.inventorymanager.home.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
-import com.example.inventorymanager.databinding.FragmentInventoryBinding
-import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.databinding.FragmentSupplierDetailsBinding
 import com.example.inventorymanager.home.DataClass.supplierAmount
 import com.example.inventorymanager.home.viewModel.adapter.SupplierAmountHistoryAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SupplierDetailsFragment : Fragment() {
-    lateinit var binding : FragmentSupplierDetailsBinding
+    lateinit var binding: FragmentSupplierDetailsBinding
     private lateinit var SupplierAmountHistoryAdapter: SupplierAmountHistoryAdapter
 
     override fun onCreateView(
@@ -23,7 +24,10 @@ class SupplierDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSupplierDetailsBinding.inflate(layoutInflater)
-
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        fab.isVisible = false
+        val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
+        bottomNavBar.isVisible = false
         val dataList = listOf(
             supplierAmount("01-08-2024", "1000 ₹"),
             supplierAmount("02-08-2024", "1500 ₹"),

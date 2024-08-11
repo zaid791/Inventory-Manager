@@ -19,8 +19,6 @@ class InventoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentInventoryBinding.inflate(layoutInflater)
-
-
         return binding.root
     }
 
