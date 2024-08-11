@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentCustomerBinding
-import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
 
@@ -22,6 +20,7 @@ class CustomerFragment : Fragment() {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +39,7 @@ class CustomerFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
