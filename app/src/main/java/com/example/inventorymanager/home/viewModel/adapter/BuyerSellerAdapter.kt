@@ -8,7 +8,8 @@ import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
 import com.example.inventorymanager.home.model.response.TransactionModel
 
 class BuyerSellerAdapter(
-    private val items: List<TransactionModel>
+    private val items: List<TransactionModel>,
+    private val onItemClick: (TransactionModel) -> Unit
 ) : RecyclerView.Adapter<BuyerSellerAdapter.YourViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YourViewHolder {
@@ -34,6 +35,11 @@ class BuyerSellerAdapter(
                 tvAmountPending.text = "₹${item.amountPending}"
                 tvContact.text = "${item.contactNumber}"
             }
+
+            binding.root.setOnClickListener {
+                onItemClick(item)
+            }
+
         }
     }
 }

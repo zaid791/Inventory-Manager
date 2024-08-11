@@ -44,7 +44,10 @@ class SupplierFragment : Fragment() {
         }
 
         binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(list)
+
+            adapter = BuyerSellerAdapter(list){selectedItem->
+
+            }
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
