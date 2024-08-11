@@ -19,15 +19,19 @@
         android:id="@+id/sellerFragment"
         android:name="com.example.inventorymanager.home.view.fragment.SupplierFragment"
         android:label="fragment_seller"
-        tools:layout="@layout/fragment_supplier" />
+        tools:layout="@layout/fragment_supplier" >
+        <action
+            android:id="@+id/action_sellerFragment_to_supplierDetailsFragment"
+            app:destination="@id/supplierDetailsFragment" />
+    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.inventorymanager.login.view.activity.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.inventorymanager.home.view.activity.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/supplierDetailsFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.SupplierDetailsFragment"
+        android:label="fragment_supplier_details"
+        tools:layout="@layout/fragment_supplier_details" />
 </navigation>
