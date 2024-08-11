@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/sellerFragment"
+    <item android:id="@+id/supplierFragment"
         android:title="@string/seller"
         android:icon="@drawable/ic_purchase" />
-    <item android:id="@+id/buyerFragment"
+    <item android:id="@+id/customerFragment"
         android:title="@string/buyer"
         android:icon="@drawable/ic_sell" />
     <item android:id="@+id/inventoryFragment"
