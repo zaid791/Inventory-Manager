@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/sellerFragment"
+        android:title="@string/seller"
+        android:icon="@drawable/ic_purchase" />
+    <item android:id="@+id/buyerFragment"
+        android:title="@string/buyer"
+        android:icon="@drawable/ic_sell" />
+    <item android:id="@+id/inventoryFragment"
+        android:title="@string/stock"
+        android:icon="@drawable/ic_inventory" />
+</menu>

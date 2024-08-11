@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sellerFragment">
+
+    <fragment
+        android:id="@+id/buyerFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.CustomerFragment"
+        android:label="fragment_buyer"
+        tools:layout="@layout/fragment_customer" />
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" />
+    <fragment
+        android:id="@+id/sellerFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.SupplierFragment"
+        android:label="fragment_seller"
+        tools:layout="@layout/fragment_supplier" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.inventorymanager.login.view.activity.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.inventorymanager.home.view.activity.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+</navigation>
