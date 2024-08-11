@@ -1,6 +1,5 @@
 <!-- res/layout/item_view_supplier.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border_circular"
@@ -17,50 +16,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Name of Item"
-            android:textStyle="bold"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinnerUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:hint="Unit"/>
+            android:hint="Unit"
+            android:spinnerMode="dropdown" />
 
         <EditText
             android:id="@+id/editTextPriceUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Price/Unit"
-            android:textStyle="bold"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextNoOfUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="No of Unit"
-            android:textStyle="bold"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
+
     <EditText
         android:id="@+id/editTextTax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Tax"
-        android:textStyle="bold"
-        android:textSize="12sp"/>
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/textViewTotalAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Total Amount : 10,000"/>
+        android:hint="Total Amount : 10,000" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"/>
+        android:backgroundTint="@color/app_theme"
+        android:text="Save" />
 </LinearLayout>

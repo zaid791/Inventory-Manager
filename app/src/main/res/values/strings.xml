@@ -73,6 +73,8 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="add_user">Add User</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="date">Date</string>
     <string-array name="unit_array">
         <item>kg</item>
         <item>ml</item>
