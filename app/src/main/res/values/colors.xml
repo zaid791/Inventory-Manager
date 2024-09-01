@@ -21,8 +21,8 @@
     <color name="grey">#aaa</color>
     <color name="darkGrey">#ff424242</color>
 
-    <color name="green">#00FF00</color>
-    <color name="red">#FF0000</color>
+    <color name="green">#008000</color>
+    <color name="red">#CB0000</color>
 
     <!-- Primary color and its variants -->
     <color name="colorPrimary">#009dff</color>
@@ -43,4 +43,6 @@
     <color name="colorOnError">#FFFFFF</color>
 
     <color name="transparent">#00000000</color>
+
+    <color name="light_grey">#EBE7E7</color>
 </resources>
