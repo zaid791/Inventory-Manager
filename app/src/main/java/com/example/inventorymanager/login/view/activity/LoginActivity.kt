@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.inventorymanager.databinding.ActivityLoginBinding
 import com.example.inventorymanager.home.view.activity.MainActivity
-import com.example.inventorymanager.login.viewModel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
