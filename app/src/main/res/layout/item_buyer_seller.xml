@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="8dp"
-    app:strokeColor="@color/app_theme"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    app:strokeColor="@color/black"
     app:strokeWidth="2dp">
 
     <LinearLayout
@@ -53,7 +55,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="2dp"
-            android:background="@color/app_theme" />
+            android:background="@color/black" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -62,12 +64,26 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/amount_paid"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amount_paid"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/iconEdit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0"
+                    android:src="@drawable/icon_3dot"/>
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/tvAmountPaid"

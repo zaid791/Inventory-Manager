@@ -3,9 +3,20 @@ package com.example.inventorymanager.home.viewModel.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
 import com.example.inventorymanager.home.model.response.TransactionModel
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.InsetDrawable
+import android.view.Gravity
+import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.core.view.ViewCompat
 
 class BuyerSellerAdapter(
     private val items: List<TransactionModel>,
@@ -36,8 +47,42 @@ class BuyerSellerAdapter(
                 tvContact.text = "${item.contactNumber}"
             }
 
-            binding.root.setOnClickListener {
-                onItemClick(item)
+//            binding.root.setOnClickListener {
+//                onItemClick(item)
+//            }
+
+            binding.iconEdit.setOnClickListener { view ->
+                // Create a PopupMenu
+                val popupMenu = PopupMenu(binding.root.context, view)
+
+                // Inflate the menu resource with Edit and View options
+                popupMenu.menu.add(0, 1, 0, "Edit")
+                popupMenu.menu.add(0, 2, 1, "View")
+
+                // Set custom background
+//                val popupBackground = binding.root.context.resources.getDrawable(R.drawable.rounded_popup_background)
+//                ViewCompat.setBackground(popupMenu, popupBackground)
+
+
+                // Set a click listener for menu items
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        1 -> {
+                            // Handle Edit action
+                            Toast.makeText(binding.root.context, "Edit clicked", Toast.LENGTH_SHORT).show()
+                            true
+                        }
+                        2 -> {
+                            // Handle View action
+                            Toast.makeText(binding.root.context, "View clicked", Toast.LENGTH_SHORT).show()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
+                // Show the PopupMenu
+                popupMenu.show()
             }
 
         }
