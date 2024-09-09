@@ -75,6 +75,8 @@
     <string name="add_user">Add User</string>
     <string name="add_transaction">Add Transaction</string>
     <string name="date">Date</string>
+    <string name="hello_sign_in">Welcome</string>
+    <string name="sign_in">SIGN IN</string>
     <string-array name="unit_array">
         <item>kg</item>
         <item>ml</item>
