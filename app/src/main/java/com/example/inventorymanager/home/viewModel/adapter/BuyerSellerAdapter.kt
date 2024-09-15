@@ -3,23 +3,16 @@ package com.example.inventorymanager.home.viewModel.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
-import androidx.recyclerview.widget.RecyclerView
-import com.example.inventorymanager.R
-import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
-import com.example.inventorymanager.home.model.response.TransactionModel
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.InsetDrawable
-import android.view.Gravity
-import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.example.inventorymanager.common.Messages
+import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
+import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
+import com.example.inventorymanager.home.model.response.TransactionModel
 
 class BuyerSellerAdapter(
-    private val items: List<TransactionModel>,
+    private val items: List<UserDetailsModel>,
     private val onItemClick: (TransactionModel) -> Unit
 ) : RecyclerView.Adapter<BuyerSellerAdapter.YourViewHolder>() {
 
@@ -39,12 +32,12 @@ class BuyerSellerAdapter(
     inner class YourViewHolder(private val binding: ItemBuyerSellerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: TransactionModel) {
+        fun bind(item: UserDetailsModel) {
             binding.apply {
-                tvName.text = item.personName
-                tvAmountPaid.text = "₹${item.amountPaid}"
-                tvAmountPending.text = "₹${item.amountPending}"
-                tvContact.text = "${item.contactNumber}"
+                tvName.text = if (item.alias.isNullOrEmpty()) Messages.getFullName(item.firstName, item.lastName) else item.alias
+                tvAmountPaid.text = "₹"
+                tvAmountPending.text = "₹"
+                tvContact.text = "${item.mobileNumber}"
             }
 
 //            binding.root.setOnClickListener {
@@ -69,14 +62,18 @@ class BuyerSellerAdapter(
                     when (menuItem.itemId) {
                         1 -> {
                             // Handle Edit action
-                            Toast.makeText(binding.root.context, "Edit clicked", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(binding.root.context, "Edit clicked", Toast.LENGTH_SHORT)
+                                .show()
                             true
                         }
+
                         2 -> {
                             // Handle View action
-                            Toast.makeText(binding.root.context, "View clicked", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(binding.root.context, "View clicked", Toast.LENGTH_SHORT)
+                                .show()
                             true
                         }
+
                         else -> false
                     }
                 }

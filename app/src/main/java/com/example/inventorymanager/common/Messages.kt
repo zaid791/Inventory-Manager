@@ -1,6 +1,11 @@
 package com.example.inventorymanager.common
 
 object Messages {
+    fun getFullName(firstName: String, lastName: String): String {
+        return firstName + lastName
+    }
+
+    const val BLANK = ""
     const val FIELD_REQUIRED = "This field cannot be empty"
     const val FIRESTORE_ERROR = "FirestoreError"
     const val ERROR_ADDING_DOCUMENT = "Error adding user document"
