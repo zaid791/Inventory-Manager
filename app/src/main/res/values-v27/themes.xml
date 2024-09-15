@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.InventoryManager" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -22,27 +23,8 @@
         <!--        <item name="colorOnBackground">@color/colorOnBackground</item>-->
         <!--        <item name="colorOnSurface">@color/colorOnSurface</item>-->
         <!--        <item name="colorOnError">@color/colorOnError</item>-->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">false</item>
-    </style>
-
-    <style name="Theme.InventoryManager" parent="Base.Theme.InventoryManager" />
-
-    <style name="custom_card_view_style" parent="Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/custom_card_view</item>
-    </style>
-
-    <style name="custom_card_view" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">30dp</item>
-        <item name="cornerSizeTopRight">30dp</item>
-        <item name="cornerSizeBottomLeft">30dp</item>
-        <item name="cornerSizeBottomRight">30dp</item>
-        <item name="elevation">60dp</item>
-    </style>
-    <!-- Base application theme. -->
-    <style name="Base.Base.Theme.InventoryManager" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 </resources>
