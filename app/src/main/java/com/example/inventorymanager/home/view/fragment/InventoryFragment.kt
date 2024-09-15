@@ -39,8 +39,6 @@ class InventoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = mainViewModel.list
-
         val inventoryList = listOf(
             InventoryItem("ARAMI ATTAR", "12 Units", "Attar", "999$", R.drawable.img),
             InventoryItem("Another Item", "5 Units", "Perfume", "500$", R.drawable.img_1),

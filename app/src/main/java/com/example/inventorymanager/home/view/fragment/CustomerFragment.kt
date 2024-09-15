@@ -24,7 +24,7 @@ class CustomerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCustomerBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -32,10 +32,9 @@ class CustomerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = mainViewModel.list
 
         binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(list){}
+            adapter = BuyerSellerAdapter(mutableListOf()) {}
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
