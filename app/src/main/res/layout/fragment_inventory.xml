@@ -7,5 +7,8 @@
     tools:context=".home.view.fragment.InventoryFragment">
 
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
