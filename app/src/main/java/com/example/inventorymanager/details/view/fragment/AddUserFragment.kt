@@ -1,6 +1,7 @@
 package com.example.inventorymanager.details.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
 import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
 import com.example.inventorymanager.details.viewModel.DetailsViewModel
+import com.example.inventorymanager.home.view.activity.MainActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class AddUserFragment : Fragment() {
@@ -55,7 +57,7 @@ class AddUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnCancel.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            startMainActivity()
         }
 
         binding.btnAdd.setOnClickListener {
@@ -96,8 +98,7 @@ class AddUserFragment : Fragment() {
             )
             detailsViewModel.addPerson(userDetails) { isSuccess ->
                 if (isSuccess) {
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
-                    Toast.makeText(requireContext(), Messages.SUCCESS, Toast.LENGTH_SHORT).show()
+                    startMainActivity()
                 } else {
                     commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
                     Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
@@ -106,6 +107,12 @@ class AddUserFragment : Fragment() {
             }
             // You can now use userDetails, e.g., save it to the database or pass it to another function
         }
+    }
+
+    private fun startMainActivity() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     // Helper function to validate a field

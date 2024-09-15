@@ -47,12 +47,14 @@ class SupplierFragment : Fragment() {
 
     private fun getData() {
         mainViewModel.fetchUserDetails { response ->
-            if (response.isNotEmpty()){
+            if (!response.isNullOrEmpty()){
                 setupAdapter(response)
-            } else {
+            } else if (response == null){
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.rvBuyers)
                 Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
                     .show()
+            } else {
+                commonViewModel.stopLoading(binding.mainProgressBar, binding.emptyPlaceholder)
             }
         }
     }
@@ -76,6 +78,7 @@ class SupplierFragment : Fragment() {
         fab.setOnClickListener {
             val intent = Intent(requireContext(), DetailsActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
     }
 
