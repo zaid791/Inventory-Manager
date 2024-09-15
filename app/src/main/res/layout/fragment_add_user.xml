@@ -7,6 +7,7 @@
     android:background="@color/white"
     tools:context=".details.view.fragment.AddUserFragment">
 
+    <!-- Progress Bar Overlay -->
     <LinearLayout
         android:id="@+id/mainProgressBar"
         android:layout_width="match_parent"
@@ -22,18 +23,22 @@
             android:src="@drawable/loading_gif" />
     </LinearLayout>
 
+    <!-- Main Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Top App Bar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/app_theme"
+            android:minHeight="56dp"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Title Text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,22 +51,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- Scrollable Content -->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnAdd"
             app:layout_constraintTop_toBottomOf="@+id/topAppbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
-
+                <!-- Input Fields -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCompanyName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="16dp"
                     android:hint="@string/company_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,13 +76,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCompanyName"
-                        android:layout_width="335dp"
-                        android:layout_height="50dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- First Name -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutFirstName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="@string/first_name"
@@ -85,13 +94,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFirstName"
-                        android:layout_width="335dp"
-                        android:layout_height="50dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Last Name -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutLastName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="@string/last_name"
@@ -101,13 +112,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLastName"
-                        android:layout_width="335dp"
-                        android:layout_height="50dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Alias -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutAlias"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="@string/alias"
@@ -117,13 +130,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAlias"
-                        android:layout_width="335dp"
-                        android:layout_height="50dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Mobile Number -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutMobileNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="@string/mobile_no"
@@ -133,14 +148,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMobileNumber"
-                        android:layout_width="335dp"
-                        android:layout_height="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Address -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="@string/address"
@@ -150,35 +166,37 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etAddress"
-                        android:layout_width="335dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:minHeight="100dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <!-- Add Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/app_theme"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Cancel Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/transparent"
             android:text="@string/cancel"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="@id/btnAdd"
-            app:layout_constraintEnd_toStartOf="@+id/btnAdd"
-            app:layout_constraintTop_toTopOf="@id/btnAdd" />
+            app:layout_constraintEnd_toStartOf="@id/btnAdd" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

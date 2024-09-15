@@ -1,7 +1,6 @@
 package com.example.inventorymanager.details.model.dataClass
 
 data class UserDetailsModel(
-    val id: Int?,
     val firstName: String,
     val lastName: String,
     val companyName: String,
