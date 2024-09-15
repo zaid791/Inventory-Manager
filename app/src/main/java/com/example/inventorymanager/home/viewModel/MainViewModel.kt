@@ -3,6 +3,7 @@ package com.example.inventorymanager.home.viewModel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.inventorymanager.common.FirestoreConstants
+import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -30,7 +31,7 @@ class MainViewModel : ViewModel() {
                 onResult(userList)
             }
             .addOnFailureListener { e ->
-                Log.e("FirestoreError", "Error fetching users", e)
+                Log.e(Messages.FIRESTORE_ERROR, Messages.ERROR_FETCHING_USERS, e)
                 // Return empty list in case of error
                 onResult(null)
             }
