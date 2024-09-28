@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,4 +60,6 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.android.gif.drawable)
     implementation (libs.circleimageview)
+
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }
