@@ -18,6 +18,7 @@ import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
 import com.example.inventorymanager.details.view.activity.DetailsActivity
+import com.example.inventorymanager.home.model.response.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,8 +30,13 @@ class SupplierFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private val commonViewModel = CommonViewModel()
 
+    private lateinit var navigationHelper: NavigationHelper
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        navigationHelper = NavigationHelper(findNavController())
+
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }
 
@@ -76,9 +82,7 @@ class SupplierFragment : Fragment() {
         val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
         bottomNavBar.isVisible = true
         fab.setOnClickListener {
-            val intent = Intent(requireContext(), DetailsActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            navigationHelper.navigateWithAnimation(R.id.action_supplierFragment_to_addUserFragment)
         }
     }
 
