@@ -34,7 +34,7 @@ class CustomerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(mutableListOf()) {}
+            adapter = BuyerSellerAdapter(mutableListOf())
             layoutManager = LinearLayoutManager(requireContext())
         }
     }

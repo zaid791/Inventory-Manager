@@ -1,7 +1,6 @@
 package com.example.inventorymanager.home.view.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentInventoryBinding
-import com.example.inventorymanager.details.view.activity.DetailsActivity
-import com.example.inventorymanager.details.view.fragment.AddProductFragment
 import com.example.inventorymanager.home.DataClass.InventoryItem
 import com.example.inventorymanager.home.model.response.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -23,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class InventoryFragment : Fragment() {
-    lateinit var binding : FragmentInventoryBinding
+    lateinit var binding: FragmentInventoryBinding
     private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: InventoryAdapter
     private lateinit var navigationHelper: NavigationHelper
@@ -41,7 +38,6 @@ class InventoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentInventoryBinding.inflate(layoutInflater)
-
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         fab.isVisible = true
         val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)

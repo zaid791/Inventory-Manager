@@ -77,6 +77,7 @@
     <string name="date">Date</string>
     <string name="hello_sign_in">Welcome</string>
     <string name="sign_in">SIGN IN</string>
+    <string name="delete">Delete</string>
     <string-array name="unit_array">
         <item>kg</item>
         <item>ml</item>

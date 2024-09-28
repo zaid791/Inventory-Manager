@@ -8,22 +8,20 @@ import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainViewModel : ViewModel() {
+
     fun fetchUserDetails(onResult: (List<UserDetailsModel>?) -> Unit) {
         // Firestore instance
         val db = FirebaseFirestore.getInstance()
-
         // List to hold user details
         val userList = mutableListOf<UserDetailsModel>()
-
         // Fetch all documents from the 'users' collection
-        db.collection(FirestoreConstants.COLLECTION_PEOPLE)
-            .get()
+        db.collection(FirestoreConstants.COLLECTION_PEOPLE).get()
             .addOnSuccessListener { documents ->
                 // Iterate over all documents
                 for (document in documents) {
                     // Map Firestore document to UserDetailsModel
                     val user =
-                        document.toObject(UserDetailsModel::class.java).copy(id = document.id)
+                        document.toObject(UserDetailsModel::class.java)
                     // Add to list
                     userList.add(user)
                 }
@@ -36,5 +34,4 @@ class MainViewModel : ViewModel() {
                 onResult(null)
             }
     }
-
 }

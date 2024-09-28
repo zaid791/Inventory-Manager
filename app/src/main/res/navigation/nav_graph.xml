@@ -71,7 +71,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/addUserFragment"
-        android:name="com.example.inventorymanager.details.view.fragment.AddUserFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
     <fragment

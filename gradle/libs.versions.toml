@@ -1,8 +1,8 @@
 [versions]
-agp = "8.6.0"
+agp = "8.6.1"
 androidGifDrawable = "1.2.29"
 circleimageview = "3.1.0"
-googleFirebaseBomVersion = "33.2.0"
+googleFirebaseBomVersion = "33.3.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -12,9 +12,9 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
-navigationFragmentKtx = "2.7.7"
-navigationUiKtx = "2.7.7"
-navigationSafeArgs = "2.7.7"
+navigationFragmentKtx = "2.8.1"
+navigationUiKtx = "2.8.1"
+navigationSafeArgs = "2.8.1"
 firebaseAuthKtx = "23.0.0"
 firebaseDatabaseKtx = "21.0.0"
 firebaseStorageKtx = "21.0.0"
@@ -43,6 +43,5 @@ firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-androidx-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigationSafeArgs" }
 androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }
 

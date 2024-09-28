@@ -13,8 +13,6 @@ class NavigationHelper(private val navController: NavController)  {
         navController.navigateUp() // This navigates up the back stack
     }
 
-
-
     // Method to navigate with a specific animation
     fun navigateWithAnimation(
         actionId: Int,

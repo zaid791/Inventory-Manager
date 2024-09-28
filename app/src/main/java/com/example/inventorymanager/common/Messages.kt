@@ -4,7 +4,10 @@ object Messages {
     fun getFullName(firstName: String, lastName: String): String {
         return firstName + lastName
     }
-
+    const val CANCEL = "Cancel"
+    const val PLEASE_TURN_ON_INTERNET = "Please turn on the internet to continue."
+    const val TURN_ON_INTERNET = "Turn on Internet"
+    const val NO_INTERNET = "No Internet Connection"
     const val BLANK = ""
     const val FIELD_REQUIRED = "This field cannot be empty"
     const val FIRESTORE_ERROR = "FirestoreError"
