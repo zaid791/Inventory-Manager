@@ -1,7 +1,6 @@
-package com.example.inventorymanager.details.view.fragment
+package com.example.inventorymanager.home.view.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
 import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
 import com.example.inventorymanager.details.viewModel.DetailsViewModel
-import com.example.inventorymanager.home.view.activity.MainActivity
+import com.example.inventorymanager.home.model.response.NavigationHelper
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 
 class AddUserFragment : Fragment() {
@@ -24,9 +28,11 @@ class AddUserFragment : Fragment() {
     private val binding get() = _binding!!
     private val commonViewModel = CommonViewModel()
     private lateinit var detailsViewModel: DetailsViewModel
+    private lateinit var navigationHelper: NavigationHelper
     override fun onAttach(context: Context) {
         super.onAttach(context)
         detailsViewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
+        navigationHelper = NavigationHelper(findNavController())
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -35,31 +41,22 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
-        val view = binding.root
+        hideActivityElements()
+        return binding.root
+    }
 
-        // Detect if the device has a cutout/notch
-        view.setOnApplyWindowInsetsListener { _, insets ->
-            val displayCutout = insets.displayCutout
-            if (displayCutout != null) {
-                // Increase the top margin by the height of the cutout
-                val cutoutHeight = displayCutout.safeInsetTop
-                val layoutParams = binding.topAppbar.layoutParams as ViewGroup.MarginLayoutParams
-                layoutParams.topMargin = cutoutHeight
-                binding.topAppbar.layoutParams = layoutParams
-            }
-            insets
-        }
-
-
-
-        return view
+    private fun hideActivityElements() {
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        fab.isVisible = false
+        val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
+        bottomNavBar.isVisible = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnCancel.setOnClickListener {
-            startMainActivity()
+            navigationHelper.navigateBackward()
         }
 
         binding.btnAdd.setOnClickListener {
@@ -91,16 +88,18 @@ class AddUserFragment : Fragment() {
         // If all fields are valid, create UserDetailsModel
         if (firstName != null && lastName != null && companyName != null && mobileNumber != null && address != null) {
             val userDetails = UserDetailsModel(
+                id = setupId(firstName, lastName, alias, mobileNumber),
                 firstName = firstName,
                 lastName = lastName,
                 companyName = companyName,
                 alias = alias,
                 mobileNumber = mobileNumber.toInt(), // Assuming mobile number fits into Int range
-                address = address
+                address = address,
+                transactions = listOf()
             )
             detailsViewModel.addPerson(userDetails) { isSuccess ->
                 if (isSuccess) {
-                    startMainActivity()
+                    navigationHelper.navigateBackward()
                 } else {
                     commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
                     Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
@@ -111,11 +110,17 @@ class AddUserFragment : Fragment() {
         }
     }
 
-    private fun startMainActivity() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish()
+    private fun setupId(firstName: String, lastName: String, alias: String?, mobileNumber: Long): String {
+        // If alias is null, use first and last name for the ID
+        val idAlias = alias ?: "$firstName.$lastName"
+
+        // Format the mobile number (convert to string)
+        val formattedMobile = mobileNumber.toString()
+
+        // Combine all elements to form the ID
+        return "$idAlias-$formattedMobile"
     }
+
 
     // Helper function to validate a field
     private fun validateField(editText: TextInputEditText, errorMessage: String): String? {

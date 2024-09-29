@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_add_product" />
     <fragment
         android:id="@+id/addUserFragment2"
-        android:name="com.example.inventorymanager.details.view.fragment.AddUserFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
 </navigation>

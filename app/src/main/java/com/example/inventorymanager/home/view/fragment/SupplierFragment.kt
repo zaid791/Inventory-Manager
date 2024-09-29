@@ -1,7 +1,6 @@
 package com.example.inventorymanager.home.view.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
-import com.example.inventorymanager.details.view.activity.DetailsActivity
 import com.example.inventorymanager.home.model.response.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
@@ -29,14 +27,11 @@ class SupplierFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
     private val commonViewModel = CommonViewModel()
-
     private lateinit var navigationHelper: NavigationHelper
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         navigationHelper = NavigationHelper(findNavController())
-
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }
 
@@ -53,9 +48,9 @@ class SupplierFragment : Fragment() {
 
     private fun getData() {
         mainViewModel.fetchUserDetails { response ->
-            if (!response.isNullOrEmpty()){
+            if (!response.isNullOrEmpty()) {
                 setupAdapter(response)
-            } else if (response == null){
+            } else if (response == null) {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.rvBuyers)
                 Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
                     .show()
@@ -67,9 +62,7 @@ class SupplierFragment : Fragment() {
 
     private fun setupAdapter(response: List<UserDetailsModel>) {
         binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(response) {
-                findNavController().navigate(SupplierFragmentDirections.actionSupplierFragmentToSupplierDetailsFragment())
-            }
+            adapter = BuyerSellerAdapter(response)
             layoutManager = LinearLayoutManager(requireContext())
         }
         commonViewModel.stopLoading(binding.mainProgressBar, binding.rvBuyers)
