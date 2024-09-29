@@ -1,7 +1,6 @@
-package com.example.inventorymanager.details.model.dataClass
+package com.example.inventorymanager.home.model
 
 import com.example.inventorymanager.common.Messages
-import com.example.inventorymanager.home.model.response.TransactionModel
 
 data class UserDetailsModel(
     val id: String? = Messages.BLANK,

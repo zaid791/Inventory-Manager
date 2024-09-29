@@ -1,4 +1,4 @@
-package com.example.inventorymanager.home.model.response
+package com.example.inventorymanager.common
 
 import android.content.Intent
 import androidx.activity.OnBackPressedCallback

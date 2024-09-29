@@ -1,4 +1,4 @@
-package com.example.inventorymanager.home.DataClass
+package com.example.inventorymanager.home.model
 
 data class InventoryItem(
     val name: String,

@@ -15,8 +15,8 @@ import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
-import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
-import com.example.inventorymanager.home.model.response.NavigationHelper
+import com.example.inventorymanager.home.model.UserDetailsModel
+import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView

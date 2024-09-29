@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.ItemViewAddNewPurchaseSupplierBinding
-import com.example.inventorymanager.home.DataClass.NewProductSupplierDataClass
+import com.example.inventorymanager.home.model.NewProductSupplierDataClass
 
 class AddNewPurchaseSupplierAdapter(private val items: List<NewProductSupplierDataClass>) : RecyclerView.Adapter<AddNewPurchaseSupplierAdapter.ViewHolder>() {
 

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.databinding.ItemViewSupplierMoneyHistoryBinding
-import com.example.inventorymanager.home.DataClass.supplierAmount
+import com.example.inventorymanager.home.model.SupplierAmount
 
-class SupplierAmountHistoryAdapter(private val items: List<supplierAmount>): RecyclerView.Adapter<SupplierAmountHistoryAdapter.ViewHolder>()  {
+class SupplierAmountHistoryAdapter(private val items: List<SupplierAmount>): RecyclerView.Adapter<SupplierAmountHistoryAdapter.ViewHolder>()  {
     inner class ViewHolder(private val binding: ItemViewSupplierMoneyHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: supplierAmount) {
+        fun bind(data: SupplierAmount) {
             binding.tvDate.text = data.date
             binding.tvAmount.text = data.amountPaid
         }

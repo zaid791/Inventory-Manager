@@ -1,4 +1,4 @@
-package com.example.inventorymanager.details.model.dataClass
+package com.example.inventorymanager.home.model
 
 data class Product(
     val id: String = "",

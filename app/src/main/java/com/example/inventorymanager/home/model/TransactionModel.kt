@@ -1,4 +1,4 @@
-package com.example.inventorymanager.home.model.response
+package com.example.inventorymanager.home.model
 
 data class TransactionModel(
     val id: Long,

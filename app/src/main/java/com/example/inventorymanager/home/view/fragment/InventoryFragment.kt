@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentInventoryBinding
-import com.example.inventorymanager.home.DataClass.InventoryItem
-import com.example.inventorymanager.home.model.response.NavigationHelper
+import com.example.inventorymanager.home.model.InventoryItem
+import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.InventoryAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView

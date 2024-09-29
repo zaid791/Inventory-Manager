@@ -16,9 +16,9 @@ import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
-import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
-import com.example.inventorymanager.details.viewModel.DetailsViewModel
-import com.example.inventorymanager.home.model.response.NavigationHelper
+import com.example.inventorymanager.home.model.UserDetailsModel
+import com.example.inventorymanager.common.NavigationHelper
+import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -27,11 +27,11 @@ class AddUserFragment : Fragment() {
     private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
     private val commonViewModel = CommonViewModel()
-    private lateinit var detailsViewModel: DetailsViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var navigationHelper: NavigationHelper
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        detailsViewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         navigationHelper = NavigationHelper(findNavController())
     }
 
@@ -97,7 +97,7 @@ class AddUserFragment : Fragment() {
                 address = address,
                 transactions = listOf()
             )
-            detailsViewModel.addPerson(userDetails) { isSuccess ->
+            mainViewModel.addPerson(userDetails) { isSuccess ->
                 if (isSuccess) {
                     navigationHelper.navigateBackward()
                 } else {

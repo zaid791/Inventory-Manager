@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.databinding.FragmentNewProductPurchaseFromSupplierBinding
-import com.example.inventorymanager.home.DataClass.NewProductSupplierDataClass
+import com.example.inventorymanager.home.model.NewProductSupplierDataClass
 import com.example.inventorymanager.home.viewModel.adapter.AddNewPurchaseSupplierAdapter
 import java.util.Calendar
 
