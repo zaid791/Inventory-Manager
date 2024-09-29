@@ -1,4 +1,4 @@
-package com.example.inventorymanager.details.view.fragment
+package com.example.inventorymanager.home.view.fragment
 
 import android.app.Activity
 import android.content.Context
@@ -16,8 +16,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.inventorymanager.databinding.FragmentAddProductBinding
-import com.example.inventorymanager.details.model.dataClass.Product
-import com.example.inventorymanager.home.model.response.NavigationHelper
+import com.example.inventorymanager.home.model.Product
+import com.example.inventorymanager.common.NavigationHelper
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView

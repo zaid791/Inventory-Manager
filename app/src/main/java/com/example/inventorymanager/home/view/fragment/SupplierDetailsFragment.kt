@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
 import com.example.inventorymanager.databinding.FragmentSupplierDetailsBinding
-import com.example.inventorymanager.home.DataClass.supplierAmount
+import com.example.inventorymanager.home.model.SupplierAmount
 import com.example.inventorymanager.home.viewModel.adapter.SupplierAmountHistoryAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,12 +29,12 @@ class SupplierDetailsFragment : Fragment() {
         val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
         bottomNavBar.isVisible = false
         val dataList = listOf(
-            supplierAmount("01-08-2024", "1000 ₹"),
-            supplierAmount("02-08-2024", "1500 ₹"),
-            supplierAmount("03-08-2024", "2500 ₹"),
-            supplierAmount("04-08-2024", "3500 ₹"),
-            supplierAmount("05-08-2024", "4500 ₹"),
-            supplierAmount("06-08-2024", "6500 ₹"),
+            SupplierAmount("01-08-2024", "1000 ₹"),
+            SupplierAmount("02-08-2024", "1500 ₹"),
+            SupplierAmount("03-08-2024", "2500 ₹"),
+            SupplierAmount("04-08-2024", "3500 ₹"),
+            SupplierAmount("05-08-2024", "4500 ₹"),
+            SupplierAmount("06-08-2024", "6500 ₹"),
         )
 
         binding.rvSupplierAmountHistory.layoutManager = LinearLayoutManager(context)

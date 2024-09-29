@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.R
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
-import com.example.inventorymanager.details.model.dataClass.UserDetailsModel
+import com.example.inventorymanager.home.model.UserDetailsModel
 
 class BuyerSellerAdapter(
     private val items: List<UserDetailsModel>

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.databinding.ItemViewInventoryBinding
-import com.example.inventorymanager.home.DataClass.InventoryItem
+import com.example.inventorymanager.home.model.InventoryItem
 
 class InventoryAdapter(
     private val inventoryList: List<InventoryItem>
