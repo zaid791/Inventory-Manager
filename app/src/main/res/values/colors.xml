@@ -3,23 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#9BFFF5</color>
-    <color name="teal_700">#FF018786</color>
-
 
     <color name="app_theme">#009dff</color>
     <color name="app_theme_dark">#007acc</color>
-    <color name="app_accent_color_1">#ff6347</color> <!-- Tomato Red -->
-    <color name="app_accent_color_2">#ffd700</color> <!-- Gold -->
-    <color name="app_theme_light_2">#66b3ff</color>
-    <color name="app_theme_light">#f6fbff</color>
-    <color name="edit_text_border">#03A9F4</color>
-    <color name="edit_text_background">#f6fbff</color>
-    <color name="grey">#aaa</color>
-    <color name="darkGrey">#ff424242</color>
+    <!-- Tomato Red -->
+    <!-- Gold -->
 
     <color name="green">#008000</color>
     <color name="red">#CB0000</color>
@@ -35,12 +23,6 @@
     <color name="colorOnSecondary">#000000</color>
 
     <!-- Other colors -->
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorError">#B00020</color>
-    <color name="colorOnBackground">#000000</color>
-    <color name="colorOnSurface">#000000</color>
-    <color name="colorOnError">#FFFFFF</color>
 
     <color name="transparent">#00000000</color>
 

@@ -4,6 +4,11 @@ object Messages {
     fun getFullName(firstName: String, lastName: String): String {
         return firstName + lastName
     }
+
+    fun getAddUserFragmentTitle(collectionName: String): String{
+        return "Add $collectionName"
+    }
+
     const val CANCEL = "Cancel"
     const val PLEASE_TURN_ON_INTERNET = "Please turn on the internet to continue."
     const val TURN_ON_INTERNET = "Turn on Internet"
@@ -23,5 +28,18 @@ object Messages {
     const val ERROR_FETCHING_USERS = "Error fetching users"
 }
 object FirestoreConstants{
-    const val COLLECTION_PEOPLE = "people"
+    const val COLLECTION_SUPPLIER = "Supplier"
+    const val COLLECTION_CUSTOMER = "Customer"
+}
+object PreferencesConstants{
+    const val PREF_NAME = "app_preferences"
+}
+
+enum class SharedPreferenceKey(val key: String) {
+    LOG_IN("isLoggedIn")
+}
+enum class Actions{
+    View,
+    Edit,
+    Delete
 }

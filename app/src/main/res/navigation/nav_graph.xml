@@ -22,7 +22,7 @@
         android:id="@+id/inventoryFragment"
         android:name="com.example.inventorymanager.home.view.fragment.InventoryFragment"
         android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" >
+        tools:layout="@layout/fragment_inventory">
         <action
             android:id="@+id/action_inventoryFragment_to_addProductFragment2"
             app:destination="@id/addProductFragment2" />
@@ -61,7 +61,7 @@
             android:id="@+id/action_supplierDetailsFragment_to_newProductPurchaseFromSupplierFragment"
             app:destination="@id/newProductPurchaseFromSupplierFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"/>
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <activity
@@ -73,7 +73,12 @@
         android:id="@+id/addUserFragment"
         android:name="com.example.inventorymanager.home.view.fragment.AddUserFragment"
         android:label="fragment_add_user"
-        tools:layout="@layout/fragment_add_user" />
+        tools:layout="@layout/fragment_add_user">
+        <argument
+            android:name="collectionName"
+            android:defaultValue="thala"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/newProductPurchaseFromSupplierFragment"
         android:name="com.example.inventorymanager.home.view.fragment.NewProductPurchaseFromSupplierFragment"

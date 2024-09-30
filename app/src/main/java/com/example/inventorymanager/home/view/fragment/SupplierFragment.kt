@@ -12,11 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventorymanager.R
+import com.example.inventorymanager.common.Actions
 import com.example.inventorymanager.common.CommonViewModel
+import com.example.inventorymanager.common.FirestoreConstants
 import com.example.inventorymanager.common.Messages
+import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
-import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.example.inventorymanager.home.viewModel.adapter.BuyerSellerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,18 +42,17 @@ class SupplierFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSupplierBinding.inflate(inflater, container, false)
-        commonViewModel.startLoading(binding.mainProgressBar, binding.rvBuyers)
+        commonViewModel.startLoading(binding.mainProgressBar, binding.rvSupplier)
         getData()
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     private fun getData() {
-        mainViewModel.fetchUserDetails { response ->
+        mainViewModel.fetchUserDetails(FirestoreConstants.COLLECTION_SUPPLIER) { response ->
             if (!response.isNullOrEmpty()) {
                 setupAdapter(response)
             } else if (response == null) {
-                commonViewModel.stopLoading(binding.mainProgressBar, binding.rvBuyers)
+                commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
                 Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -61,11 +62,17 @@ class SupplierFragment : Fragment() {
     }
 
     private fun setupAdapter(response: List<UserDetailsModel>) {
-        binding.rvBuyers.apply {
-            adapter = BuyerSellerAdapter(response)
+        binding.rvSupplier.apply {
+            adapter = BuyerSellerAdapter(response) { model, action ->
+                when(action){
+                    Actions.View -> TODO()
+                    Actions.Edit -> TODO()
+                    Actions.Delete -> TODO()
+                }
+            }
             layoutManager = LinearLayoutManager(requireContext())
         }
-        commonViewModel.stopLoading(binding.mainProgressBar, binding.rvBuyers)
+        commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,7 +82,10 @@ class SupplierFragment : Fragment() {
         val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
         bottomNavBar.isVisible = true
         fab.setOnClickListener {
-            navigationHelper.navigateWithAnimation(R.id.action_supplierFragment_to_addUserFragment)
+            val action = SupplierFragmentDirections.actionSupplierFragmentToAddUserFragment(
+                FirestoreConstants.COLLECTION_SUPPLIER
+            )
+            findNavController().navigate(action)
         }
     }
 
