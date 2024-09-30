@@ -26,8 +26,6 @@
         <item name="android:fitsSystemWindows">false</item>
     </style>
 
-    <style name="Theme.InventoryManager" parent="Base.Theme.InventoryManager" />
-
     <style name="custom_card_view_style" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/custom_card_view</item>
     </style>
