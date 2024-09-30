@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.R
+import com.example.inventorymanager.common.Actions
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.ItemBuyerSellerBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 
 class BuyerSellerAdapter(
-    private val items: List<UserDetailsModel>
+    private val items: List<UserDetailsModel>,
+    private val onAction: (UserDetailsModel, Actions) -> Unit
 ) : RecyclerView.Adapter<BuyerSellerAdapter.YourViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YourViewHolder {
@@ -42,13 +44,11 @@ class BuyerSellerAdapter(
                 tvContact.text = item.mobileNumber.toString()
             }
             binding.iconEdit.setOnClickListener { view ->
-                showPopupMenu(view)
-
+                showPopupMenu(view, item)
             }
-
         }
 
-        private fun showPopupMenu(view: View?) {
+        private fun showPopupMenu(view: View?, item: UserDetailsModel) {
             // Create a PopupMenu
             val popupMenu = PopupMenu(binding.root.context, view)
             popupMenu.menuInflater.inflate(R.menu.menu_popup, popupMenu.menu)
@@ -57,15 +57,17 @@ class BuyerSellerAdapter(
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     1 -> {
-
+                        onAction(item, Actions.View)
                         true
                     }
 
                     2 -> {
+                        onAction(item, Actions.Edit)
                         true
                     }
 
                     3 -> {
+                        onAction(item, Actions.Delete)
                         true
                     }
 

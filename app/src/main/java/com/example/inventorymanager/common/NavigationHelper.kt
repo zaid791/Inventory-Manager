@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.example.inventorymanager.R
 
-class NavigationHelper(private val navController: NavController)  {
+class NavigationHelper(private val navController: NavController) {
     // Method to navigate backward
     fun navigateBackward() {
         navController.navigateUp() // This navigates up the back stack
@@ -23,24 +23,13 @@ class NavigationHelper(private val navController: NavController)  {
         popUpTo: String? = null,
         inclusive: Boolean = false
     ) {
-        if (popUpTo != null) {
-            val options = NavOptions.Builder()
-                .setEnterAnim(enterAnim)
-                .setExitAnim(exitAnim)
-                .setPopEnterAnim(popEnterAnim)
-                .setPopExitAnim(popExitAnim)
-                .setPopUpTo(R.id.fragment_container_view_add_product, inclusive)
-                .build()
-            navController.navigate(actionId, null, options)
-        } else {
-            val options = NavOptions.Builder()
-                .setEnterAnim(enterAnim)
-                .setExitAnim(exitAnim)
-                .setPopEnterAnim(popEnterAnim)
-                .setPopExitAnim(popExitAnim)
-                .build()
-            navController.navigate(actionId, null, options)
-        }
+        val options = NavOptions.Builder()
+            .setEnterAnim(enterAnim)
+            .setExitAnim(exitAnim)
+            .setPopEnterAnim(popEnterAnim)
+            .setPopExitAnim(popExitAnim)
+            .build()
+        navController.navigate(actionId, null, options)
     }
 
     fun setupBackPressHandler(fragment: Fragment) {

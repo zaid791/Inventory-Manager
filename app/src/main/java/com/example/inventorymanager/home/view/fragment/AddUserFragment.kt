@@ -12,12 +12,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
+import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
-import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.home.viewModel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,6 +30,7 @@ class AddUserFragment : Fragment() {
     private val commonViewModel = CommonViewModel()
     private lateinit var mainViewModel: MainViewModel
     private lateinit var navigationHelper: NavigationHelper
+    private val args: AddUserFragmentArgs by navArgs()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
@@ -41,6 +43,7 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
+        binding.tvTitle.text = Messages.getAddUserFragmentTitle(args.collectionName)
         hideActivityElements()
         return binding.root
     }
@@ -97,7 +100,7 @@ class AddUserFragment : Fragment() {
                 address = address,
                 transactions = listOf()
             )
-            mainViewModel.addPerson(userDetails) { isSuccess ->
+            mainViewModel.addPerson(args.collectionName, userDetails) { isSuccess ->
                 if (isSuccess) {
                     navigationHelper.navigateBackward()
                 } else {
@@ -106,11 +109,15 @@ class AddUserFragment : Fragment() {
                         .show()
                 }
             }
-            // You can now use userDetails, e.g., save it to the database or pass it to another function
         }
     }
 
-    private fun setupId(firstName: String, lastName: String, alias: String?, mobileNumber: Long): String {
+    private fun setupId(
+        firstName: String,
+        lastName: String,
+        alias: String?,
+        mobileNumber: Long
+    ): String {
         // If alias is null, use first and last name for the ID
         val idAlias = alias ?: "$firstName.$lastName"
 
