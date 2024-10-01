@@ -55,7 +55,31 @@ class MainViewModel : ViewModel() {
             }
     }
 
-    fun deletePerson(model: UserDetailsModel) {
-        //Todo()
+    fun deletePerson(model: UserDetailsModel, collectionName: String, onResult: (Boolean) -> Unit) {
+        // Firestore instance
+        val db = FirebaseFirestore.getInstance()
+
+        // Check if the model has an ID (or a field that holds the document ID in Firestore)
+        val documentId = model.id  // Assuming 'id' is the field holding the Firestore document ID
+
+        if (documentId != null) {
+            // Reference the document and delete it
+            db.collection(collectionName).document(documentId)
+                .delete()
+                .addOnSuccessListener {
+                    // Deletion was successful, return true
+                    onResult(true)
+                }
+                .addOnFailureListener { e ->
+                    // Log the error and return false
+                    Log.e(Messages.FIRESTORE_ERROR, Messages.ERROR_DELETING_DOCUMENT, e)
+                    onResult(false)
+                }
+        } else {
+            // If no ID is provided, log an error and return false
+            Log.e(Messages.FIRESTORE_ERROR, "Document ID is null, cannot delete.")
+            onResult(false)
+        }
     }
+
 }

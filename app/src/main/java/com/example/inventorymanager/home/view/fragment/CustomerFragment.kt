@@ -61,7 +61,15 @@ class CustomerFragment : Fragment() {
                 when (action) {
                     Actions.View -> TODO()
                     Actions.Edit -> TODO()
-                    Actions.Delete -> mainViewModel.deletePerson(model)
+                    Actions.Delete -> {
+                        commonViewModel.startLoading(binding.mainProgressBar, binding.rvCustomer)
+                        mainViewModel.deletePerson(
+                            model,
+                            FirestoreConstants.COLLECTION_CUSTOMER
+                        ) {
+                            commonViewModel.stopLoading(binding.mainProgressBar, binding.rvCustomer)
+                        }
+                    }
                 }
             }
             layoutManager = LinearLayoutManager(requireContext())
