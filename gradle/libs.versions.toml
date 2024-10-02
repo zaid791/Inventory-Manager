@@ -18,10 +18,12 @@ navigationSafeArgs = "2.8.1"
 firebaseAuthKtx = "23.0.0"
 firebaseDatabaseKtx = "21.0.0"
 firebaseStorageKtx = "21.0.0"
+swiperefreshlayout = "1.2.0-alpha01"
 
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 com-google-firebase-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "googleFirebaseBomVersion" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }

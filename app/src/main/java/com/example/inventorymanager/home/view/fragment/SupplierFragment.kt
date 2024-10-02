@@ -58,6 +58,7 @@ class SupplierFragment : Fragment() {
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.emptyPlaceholder)
             }
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -99,6 +100,10 @@ class SupplierFragment : Fragment() {
                 FirestoreConstants.COLLECTION_SUPPLIER
             )
             findNavController().navigate(action)
+        }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = true
+            getData()
         }
     }
 

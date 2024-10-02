@@ -60,4 +60,5 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.android.gif.drawable)
     implementation (libs.circleimageview)
+    implementation(libs.androidx.swiperefreshlayout)
 }

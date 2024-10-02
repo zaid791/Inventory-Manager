@@ -52,6 +52,7 @@ class CustomerFragment : Fragment() {
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.emptyPlaceholder)
             }
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -88,6 +89,10 @@ class CustomerFragment : Fragment() {
                 FirestoreConstants.COLLECTION_CUSTOMER
             )
             findNavController().navigate(action)
+        }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = true
+            getData()
         }
     }
 
