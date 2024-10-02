@@ -44,7 +44,7 @@ class BuyerSellerAdapter(
                 tvAmountPending.text = "₹"
                 tvContact.text = item.mobileNumber.toString()
             }
-            binding.iconEdit.setOnClickListener { view ->
+            binding.btnOptions.setOnClickListener { view ->
                 showPopupMenu(view, item)
             }
         }

@@ -29,11 +29,12 @@
                 android:text="@string/bruce_wayne"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_24_10_2002"/>
+                android:text="@string/_24_10_2002" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,26 +65,12 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/amount_paid"
-                    android:textSize="14sp"
-                    android:layout_weight="1"
-                    android:textStyle="bold" />
-                <ImageView
-                    android:id="@+id/iconEdit"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="0"
-                    android:src="@drawable/icon_3dot"/>
-            </LinearLayout>
-
-
+                android:text="@string/amount_paid"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvAmountPaid"
@@ -115,5 +102,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAmountPaid" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:contentDescription="@string/options"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:src="@drawable/icon_3dot" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -32,6 +32,7 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="view">View</string>
+    <string name="options">Options</string>
     <string-array name="unit_array">
         <item>kg</item>
         <item>ml</item>
