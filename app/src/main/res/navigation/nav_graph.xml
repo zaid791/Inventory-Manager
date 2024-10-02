@@ -40,8 +40,8 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_supplierFragment_to_supplierDetailsFragment"
-            app:destination="@id/supplierDetailsFragment"
+            android:id="@+id/action_supplierFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -53,12 +53,12 @@
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <fragment
-        android:id="@+id/supplierDetailsFragment"
-        android:name="com.example.inventorymanager.home.view.fragment.SupplierDetailsFragment"
-        android:label="fragment_supplier_details"
-        tools:layout="@layout/fragment_supplier_details">
+        android:id="@+id/detailsFragment"
+        android:name="com.example.inventorymanager.home.view.fragment.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
         <action
-            android:id="@+id/action_supplierDetailsFragment_to_newProductPurchaseFromSupplierFragment"
+            android:id="@+id/action_detailsFragment_to_newProductPurchaseFromSupplierFragment"
             app:destination="@id/newProductPurchaseFromSupplierFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />

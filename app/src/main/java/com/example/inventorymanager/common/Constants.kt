@@ -40,7 +40,8 @@ object PreferencesConstants{
 }
 
 enum class SharedPreferenceKey(val key: String) {
-    LOG_IN("isLoggedIn")
+    LOG_IN("isLoggedIn"),
+    SELECTED_PERSON("selectedPerson"),
 }
 enum class Actions{
     View,

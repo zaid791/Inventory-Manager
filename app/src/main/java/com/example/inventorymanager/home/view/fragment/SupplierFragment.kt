@@ -17,6 +17,7 @@ import com.example.inventorymanager.common.Actions
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.FirestoreConstants
 import com.example.inventorymanager.common.Messages
+import com.example.inventorymanager.common.SharedPreferenceHelper
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -30,10 +31,12 @@ class SupplierFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private val commonViewModel = CommonViewModel()
     private var personList: MutableList<UserDetailsModel> = mutableListOf()
+    private lateinit var sharedPreferenceHelper: SharedPreferenceHelper
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        sharedPreferenceHelper = SharedPreferenceHelper(context)
     }
 
     override fun onCreateView(
@@ -70,7 +73,7 @@ class SupplierFragment : Fragment() {
         binding.rvSupplier.apply {
             adapter = BuyerSellerAdapter(personList) { model, action ->
                 when (action) {
-                    Actions.View -> TODO()
+                    Actions.View -> viewPersonDetails(model)
                     Actions.Edit -> TODO()
                     Actions.Delete -> showDialog(model)
                 }
@@ -78,6 +81,12 @@ class SupplierFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
         commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+    }
+
+    private fun viewPersonDetails(model: UserDetailsModel) {
+        sharedPreferenceHelper.saveSelectedPerson(model)
+        val action = SupplierFragmentDirections.actionSupplierFragmentToDetailsFragment()
+        findNavController().navigate(action)
     }
 
     // Function to actually show the dialog

@@ -59,20 +59,16 @@ class BuyerSellerAdapter(
                 when (menuItem.itemId) {
                     R.id.actionView -> {
                         onAction(item, Actions.View)
-                        Toast.makeText(binding.root.context, "View", Toast.LENGTH_SHORT).show()
                         true
                     }
 
                     R.id.actionEdit -> {
                         onAction(item, Actions.Edit)
-                        Toast.makeText(binding.root.context, "Edit", Toast.LENGTH_SHORT).show()
                         true
                     }
 
                     R.id.actionDelete -> {
                         onAction(item, Actions.Delete)
-                        Toast.makeText(binding.root.context, "Delete", Toast.LENGTH_SHORT).show()
-
                         true
                     }
 

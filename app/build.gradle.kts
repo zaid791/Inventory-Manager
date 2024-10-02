@@ -61,4 +61,5 @@ dependencies {
     implementation(libs.android.gif.drawable)
     implementation (libs.circleimageview)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.gson)
 }
