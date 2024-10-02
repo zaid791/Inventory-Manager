@@ -17,7 +17,6 @@ import com.example.inventorymanager.common.Actions
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.FirestoreConstants
 import com.example.inventorymanager.common.Messages
-import com.example.inventorymanager.common.NavigationHelper
 import com.example.inventorymanager.databinding.FragmentSupplierBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -30,12 +29,10 @@ class SupplierFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
     private val commonViewModel = CommonViewModel()
-    private lateinit var navigationHelper: NavigationHelper
     private var personList: MutableList<UserDetailsModel> = mutableListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        navigationHelper = NavigationHelper(findNavController())
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }
 
