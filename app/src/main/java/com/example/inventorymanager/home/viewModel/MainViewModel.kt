@@ -1,8 +1,6 @@
 package com.example.inventorymanager.home.viewModel
 
-import android.content.Context
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.home.model.UserDetailsModel
@@ -22,7 +20,8 @@ class MainViewModel : ViewModel() {
                 for (document in documents) {
                     // Map Firestore document to UserDetailsModel
                     val user =
-                        document.toObject(UserDetailsModel::class.java).copy(documentId = document.id)
+                        document.toObject(UserDetailsModel::class.java)
+                            .copy(documentId = document.id)
                     // Add to list
                     userList.add(user)
                 }
@@ -62,7 +61,8 @@ class MainViewModel : ViewModel() {
         val db = FirebaseFirestore.getInstance()
 
         // Check if the model has an ID (or a field that holds the document ID in Firestore)
-        val documentId = model.documentId // Assuming 'id' is the field holding the Firestore document ID
+        val documentId =
+            model.documentId // Assuming 'id' is the field holding the Firestore document ID
 
         if (documentId != null) {
             // Reference the document and delete it

@@ -84,6 +84,7 @@ class AddUserFragment : Fragment() {
                 mobileNumberText.toLongOrNull()
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
+                commonViewModel.vibrateDevice(requireContext())
                 binding.etMobileNumber.error = Messages.MOBILE_NUMBER_LENGTH
                 null
             }

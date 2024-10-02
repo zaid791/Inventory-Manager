@@ -10,6 +10,11 @@ import android.provider.Settings
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModel
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
+
 
 class CommonViewModel : ViewModel() {
     fun startLoading(mainProgressBar: View, mainLayout: View) {
@@ -57,4 +62,20 @@ class CommonViewModel : ViewModel() {
     }
 
 
+    fun vibrateDevice(context: Context, duration: Long = 500) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Use VibratorManager for Android 12 (API 31) and above
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibrator = vibratorManager.defaultVibrator
+
+            // Create and execute a one-shot vibration
+            val vibrationEffect = VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.vibrate(vibrationEffect)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Use the old Vibrator class for Android O to Android 11 (API 26 to 30)
+            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            val vibrationEffect = VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.vibrate(vibrationEffect)
+        }
+    }
 }
