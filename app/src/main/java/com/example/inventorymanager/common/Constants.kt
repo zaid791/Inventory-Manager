@@ -27,6 +27,9 @@ object Messages {
     const val MOBILE_NUMBER_LENGTH = "Mobile number must be 10 digits long"
     const val ERROR_FETCHING_USERS = "Error fetching users"
     const val ERROR_DELETING_DOCUMENT = "Error deleting document"
+    const val YES = "Yes"
+    const val NO = "No"
+    const val ARE_YOU_SURE_DELETE = "Are you want to delete this user ?\nNote:- All the related transaction history will be deleted!"
 }
 object FirestoreConstants{
     const val COLLECTION_SUPPLIER = "Supplier"

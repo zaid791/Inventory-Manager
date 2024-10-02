@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,7 @@ class SupplierFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private val commonViewModel = CommonViewModel()
     private lateinit var navigationHelper: NavigationHelper
+    private var personList: MutableList<UserDetailsModel> = mutableListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,44 +51,70 @@ class SupplierFragment : Fragment() {
 
     private fun getData() {
         mainViewModel.fetchUserDetails(FirestoreConstants.COLLECTION_SUPPLIER) { response ->
-            if (!response.isNullOrEmpty()) {
-                setupAdapter(response)
-            } else if (response == null) {
-                commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
-                Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                commonViewModel.stopLoading(binding.mainProgressBar, binding.emptyPlaceholder)
-            }
-            binding.swipeRefreshLayout.isRefreshing = false
+            handleDataResponse(response)
         }
     }
 
-    private fun setupAdapter(response: List<UserDetailsModel>) {
+    private fun handleDataResponse(response: List<UserDetailsModel>?) {
+        if (!response.isNullOrEmpty()) {
+            personList = response.toMutableList()
+            setupAdapter()
+        } else if (response == null) {
+            commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+            Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            commonViewModel.stopLoading(binding.mainProgressBar, binding.emptyPlaceholder)
+        }
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    private fun setupAdapter() {
         binding.rvSupplier.apply {
-            adapter = BuyerSellerAdapter(response) { model, action ->
+            adapter = BuyerSellerAdapter(personList) { model, action ->
                 when (action) {
                     Actions.View -> TODO()
                     Actions.Edit -> TODO()
-                    Actions.Delete -> {
-                        commonViewModel.startLoading(binding.mainProgressBar, binding.rvSupplier)
-                        mainViewModel.deletePerson(
-                            model,
-                            FirestoreConstants.COLLECTION_SUPPLIER
-                        ) { isSuccess ->
-                            commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
-                            if (isSuccess){
-                                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(requireContext(), "Fail", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
+                    Actions.Delete -> showDialog(model)
                 }
             }
             layoutManager = LinearLayoutManager(requireContext())
         }
         commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+    }
+
+    // Function to actually show the dialog
+    private fun showDialog(model: UserDetailsModel) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(Actions.Delete.name)
+            .setMessage(Messages.ARE_YOU_SURE_DELETE)
+            .setPositiveButton(Messages.YES) { dialog, _ ->
+                deletePerson(model)
+                dialog.dismiss()
+            }
+            .setNegativeButton(Messages.NO) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+    private fun deletePerson(model: UserDetailsModel) {
+        commonViewModel.startLoading(binding.mainProgressBar, binding.rvSupplier)
+        mainViewModel.deletePerson(
+            model,
+            FirestoreConstants.COLLECTION_SUPPLIER
+        ) { isSuccess ->
+            if (isSuccess) {
+                personList.remove(model)
+                handleDataResponse(personList)
+                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+                Toast.makeText(requireContext(), "Fail", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
