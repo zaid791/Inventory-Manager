@@ -26,6 +26,7 @@ object Messages {
     const val ADDRESS_REQUIRED = "Address is required"
     const val MOBILE_NUMBER_LENGTH = "Mobile number must be 10 digits long"
     const val ERROR_FETCHING_USERS = "Error fetching users"
+    const val ERROR_DELETING_DOCUMENT = "Error deleting document"
 }
 object FirestoreConstants{
     const val COLLECTION_SUPPLIER = "Supplier"

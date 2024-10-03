@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.R
 import com.example.inventorymanager.common.Actions
@@ -56,18 +57,22 @@ class BuyerSellerAdapter(
             // Set a click listener for menu items
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-                    1 -> {
+                    R.id.actionView -> {
                         onAction(item, Actions.View)
+                        Toast.makeText(binding.root.context, "View", Toast.LENGTH_SHORT).show()
                         true
                     }
 
-                    2 -> {
+                    R.id.actionEdit -> {
                         onAction(item, Actions.Edit)
+                        Toast.makeText(binding.root.context, "Edit", Toast.LENGTH_SHORT).show()
                         true
                     }
 
-                    3 -> {
+                    R.id.actionDelete -> {
                         onAction(item, Actions.Delete)
+                        Toast.makeText(binding.root.context, "Delete", Toast.LENGTH_SHORT).show()
+
                         true
                     }
 

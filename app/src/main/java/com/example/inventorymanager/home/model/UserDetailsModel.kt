@@ -10,18 +10,20 @@ data class UserDetailsModel(
     val alias: String?,
     val mobileNumber: Int,
     val address: String,
-    val transactions: List<TransactionModel>
+    val transactions: List<TransactionModel>,
+    val documentId: String? = Messages.BLANK
 ) {
     // No-argument constructor required by Firestore
     @Suppress("unused")
     constructor() : this(
-        null,
+        Messages.BLANK,
         Messages.BLANK,
         Messages.BLANK,
         Messages.BLANK,
         null,
         1234567890,
         Messages.BLANK,
-        listOf()
+        listOf(),
+        null
     )
 }
