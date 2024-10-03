@@ -64,10 +64,23 @@ class SupplierFragment : Fragment() {
     private fun setupAdapter(response: List<UserDetailsModel>) {
         binding.rvSupplier.apply {
             adapter = BuyerSellerAdapter(response) { model, action ->
-                when(action){
+                when (action) {
                     Actions.View -> TODO()
                     Actions.Edit -> TODO()
-                    Actions.Delete -> TODO()
+                    Actions.Delete -> {
+                        commonViewModel.startLoading(binding.mainProgressBar, binding.rvSupplier)
+                        mainViewModel.deletePerson(
+                            model,
+                            FirestoreConstants.COLLECTION_SUPPLIER
+                        ) { isSuccess ->
+                            commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+                            if (isSuccess){
+                                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(requireContext(), "Fail", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 }
             }
             layoutManager = LinearLayoutManager(requireContext())
