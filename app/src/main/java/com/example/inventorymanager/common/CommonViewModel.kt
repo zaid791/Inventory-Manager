@@ -14,6 +14,10 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import androidx.annotation.RequiresApi
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 
 class CommonViewModel : ViewModel() {
@@ -78,4 +82,26 @@ class CommonViewModel : ViewModel() {
             vibrator.vibrate(vibrationEffect)
         }
     }
+
+
+
+    // Function to convert LocalDateTime to a readable string
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun formatDateTimeToReadableString(dateTime: LocalDateTime): String {
+        val formatter = DateTimeFormatter.ofPattern(Patterns.DATE_TIME)  // Define the desired format
+        return dateTime.format(formatter)  // Format and return the result as a string
+    }
+
+    // Function to convert a readable string to LocalDateTime
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun parseReadableStringToDateTime(dateTimeString: String): LocalDateTime? {
+        return try {
+            val formatter = DateTimeFormatter.ofPattern(Patterns.DATE_TIME)  // Define the same format
+            LocalDateTime.parse(dateTimeString, formatter)  // Parse and return the LocalDateTime object
+        } catch (e: DateTimeParseException) {
+            e.printStackTrace()
+            null  // Return null if parsing fails (optional)
+        }
+    }
+
 }

@@ -11,6 +11,8 @@ data class UserDetailsModel(
     val mobileNumber: Int,
     val address: String,
     val transactions: List<TransactionModel>,
+    val totalAmountPaidAllTransactions: Long = 0,
+    val totalAmountPendingAllTransactions: Long = 0,
     val documentId: String? = Messages.BLANK
 ) {
     // No-argument constructor required by Firestore
@@ -24,6 +26,8 @@ data class UserDetailsModel(
         1234567890,
         Messages.BLANK,
         listOf(),
+        0,
+        0,
         null
     )
 }

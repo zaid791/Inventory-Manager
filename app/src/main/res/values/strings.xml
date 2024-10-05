@@ -33,6 +33,15 @@
     <string name="edit">Edit</string>
     <string name="view">View</string>
     <string name="options">Options</string>
+    <string name="details">Details</string>
+    <string name="mohammed_zaid">Mohammed Zaid</string>
+    <string name="information">Information</string>
+    <string name="show_more_information">Show more information</string>
+    <string name="_90_0000">₹ 90,0000</string>
+    <string name="_10_0000">₹ 10,0000</string>
+    <string name="number">Number</string>
+    <string name="full_name">Full Name</string>
+    <string name="show_less_information">Show Less Information</string>
     <string-array name="unit_array">
         <item>kg</item>
         <item>ml</item>

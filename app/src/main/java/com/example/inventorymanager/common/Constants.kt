@@ -9,6 +9,10 @@ object Messages {
         return "Add $collectionName"
     }
 
+    fun getCurrencyString(amount: Long): String{
+        return "₹ $amount"
+    }
+
     const val CANCEL = "Cancel"
     const val PLEASE_TURN_ON_INTERNET = "Please turn on the internet to continue."
     const val TURN_ON_INTERNET = "Turn on Internet"
@@ -38,6 +42,9 @@ object FirestoreConstants{
 object PreferencesConstants{
     const val PREF_NAME = "app_preferences"
 }
+object Patterns{
+    const val DATE_TIME = "yyyy-MM-dd HH:mm:ss"
+}
 
 enum class SharedPreferenceKey(val key: String) {
     LOG_IN("isLoggedIn"),
@@ -47,4 +54,8 @@ enum class Actions{
     View,
     Edit,
     Delete
+}
+enum class UnitEnum{
+    Kilogram,
+    Piece
 }
