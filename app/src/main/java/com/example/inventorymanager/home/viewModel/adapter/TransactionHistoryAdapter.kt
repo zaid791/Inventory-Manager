@@ -1,16 +1,13 @@
 package com.example.inventorymanager.home.viewModel.adapter
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.ItemViewSupplierMoneyHistoryBinding
 import com.example.inventorymanager.home.model.TransactionModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 class TransactionHistoryAdapter(
     private val transactions: List<TransactionModel>,
     private val commonViewModel: CommonViewModel
