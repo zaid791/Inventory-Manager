@@ -119,7 +119,7 @@ object PreferencesConstants{
     const val PREF_NAME = "app_preferences"
 }
 object Patterns{
-    const val DATE_TIME = "dd-MM-yyyy HH:mm:ss"
+    const val DATE_TIME = "dd-MM-yyyy HH:mm"
 }
 
 enum class SharedPreferenceKey(val key: String) {

@@ -1,10 +1,12 @@
 package com.example.inventorymanager.home.viewModel.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.common.CommonViewModel
+import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.databinding.ItemTransactionDetailsBinding
 import com.example.inventorymanager.databinding.ItemTransactionHistoryBinding
 import com.example.inventorymanager.home.model.Items
@@ -20,6 +22,8 @@ class TransactionHistoryAdapter(
         fun bind(transaction: TransactionModel) {
             binding.tvTransactionDateTime.text =
                 commonViewModel.formatDateTimeToReadableString(transaction.dateTime)
+            binding.tvAmountPaid.text = Messages.getCurrencyString(transaction.amountPaid)
+            binding.tvAmountPending.text = Messages.getCurrencyString(transaction.amountPending)
             binding.rvTransactions.apply {
                 isNestedScrollingEnabled = false
                 layoutManager = LinearLayoutManager(binding.root.context)
@@ -50,7 +54,14 @@ class TransactionItemsAdapter(private val items: List<Items>) :
     RecyclerView.Adapter<TransactionItemsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemTransactionDetailsBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(item: Items) {
+            with(binding){
+                tvItemName.text = item.name
+                tvQuantity.text = "${item.quantity} ${item.unitName}"
+                tvUnitPrice.text = Messages.getCurrencyString(item.unitPrice) + " per ${item.unitName}"
+                tvTotalPrice.text = Messages.getCurrencyString(item.totalPrice)
+            }
         }
     }
 
