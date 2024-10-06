@@ -138,6 +138,8 @@ class AddUserFragment : Fragment() {
         mainViewModel.editPersonDetails(userDetails, args.collectionName) { isSuccess ->
             if (isSuccess) {
                 navigationHelper.navigateBackward()
+                Toast.makeText(requireContext(), Messages.SUCCESS, Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
                 Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
@@ -150,6 +152,8 @@ class AddUserFragment : Fragment() {
         mainViewModel.addPerson(args.collectionName, userDetails) { isSuccess ->
             if (isSuccess) {
                 navigationHelper.navigateBackward()
+                Toast.makeText(requireContext(), Messages.SUCCESS, Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
                 Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
