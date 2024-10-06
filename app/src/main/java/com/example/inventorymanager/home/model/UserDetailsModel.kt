@@ -8,7 +8,7 @@ data class UserDetailsModel(
     val lastName: String,
     val companyName: String,
     val alias: String?,
-    val mobileNumber: Int,
+    val mobileNumber: Long,
     val address: String,
     val transactions: List<TransactionModel>,
     val totalAmountPaidAllTransactions: Long = 0,

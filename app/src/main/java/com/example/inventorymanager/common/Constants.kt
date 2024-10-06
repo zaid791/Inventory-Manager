@@ -17,6 +17,10 @@ object Messages {
         return "₹ $amount"
     }
 
+    fun getEditUserFragmentTitle(collectionName: String): String {
+        return "Edit $collectionName"
+    }
+
     const val CANCEL = "Cancel"
     const val PLEASE_TURN_ON_INTERNET = "Please turn on the internet to continue."
     const val TURN_ON_INTERNET = "Turn on Internet"

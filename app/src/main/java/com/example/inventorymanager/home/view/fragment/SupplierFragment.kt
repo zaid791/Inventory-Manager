@@ -74,13 +74,22 @@ class SupplierFragment : Fragment() {
             adapter = BuyerSellerAdapter(personList) { model, action ->
                 when (action) {
                     Actions.View -> viewPersonDetails(model)
-                    Actions.Edit -> TODO()
+                    Actions.Edit -> editPersonalDetails(model)
                     Actions.Delete -> showDialog(model)
                 }
             }
             layoutManager = LinearLayoutManager(requireContext())
         }
         commonViewModel.stopLoading(binding.mainProgressBar, binding.rvSupplier)
+    }
+
+    private fun editPersonalDetails(model: UserDetailsModel) {
+        sharedPreferenceHelper.saveSelectedPerson(model)
+        val action = SupplierFragmentDirections.actionSupplierFragmentToAddUserFragment(
+            collectionName = FirestoreConstants.COLLECTION_SUPPLIER,
+            isEdit = true
+        )
+        findNavController().navigate(action)
     }
 
     private fun viewPersonDetails(model: UserDetailsModel) {

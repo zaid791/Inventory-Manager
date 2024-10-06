@@ -17,6 +17,7 @@ import com.example.inventorymanager.common.Actions
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.FirestoreConstants
 import com.example.inventorymanager.common.Messages
+import com.example.inventorymanager.common.SharedPreferenceHelper
 import com.example.inventorymanager.databinding.FragmentCustomerBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -28,12 +29,14 @@ class CustomerFragment : Fragment() {
     private var _binding: FragmentCustomerBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var sharedPreferenceHelper: SharedPreferenceHelper
     private val commonViewModel = CommonViewModel()
     private var personList: MutableList<UserDetailsModel> = mutableListOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        sharedPreferenceHelper = SharedPreferenceHelper(context)
     }
 
     override fun onCreateView(
@@ -68,14 +71,29 @@ class CustomerFragment : Fragment() {
         binding.rvCustomer.apply {
             adapter = BuyerSellerAdapter(personList) { model, action ->
                 when (action) {
-                    Actions.View -> TODO()
-                    Actions.Edit -> TODO()
+                    Actions.View -> viewPersonDetails(model)
+                    Actions.Edit -> editPersonalDetails(model)
                     Actions.Delete -> showDialog(model)
                 }
             }
             layoutManager = LinearLayoutManager(requireContext())
         }
         commonViewModel.stopLoading(binding.mainProgressBar, binding.rvCustomer)
+    }
+
+    private fun editPersonalDetails(model: UserDetailsModel) {
+        sharedPreferenceHelper.saveSelectedPerson(model)
+        val action = CustomerFragmentDirections.actionCustomerFragmentToAddUserFragment(
+            collectionName = FirestoreConstants.COLLECTION_CUSTOMER,
+            isEdit = true
+        )
+        findNavController().navigate(action)
+    }
+
+    private fun viewPersonDetails(model: UserDetailsModel) {
+        sharedPreferenceHelper.saveSelectedPerson(model)
+        val action = CustomerFragmentDirections.actionCustomerFragmentToDetailsFragment()
+        findNavController().navigate(action)
     }
 
     private fun showDialog(model: UserDetailsModel) {

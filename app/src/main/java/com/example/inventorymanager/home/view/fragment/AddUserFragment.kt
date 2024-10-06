@@ -1,5 +1,6 @@
 package com.example.inventorymanager.home.view.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.common.NavigationHelper
+import com.example.inventorymanager.common.SharedPreferenceHelper
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -30,11 +32,13 @@ class AddUserFragment : Fragment() {
     private val commonViewModel = CommonViewModel()
     private lateinit var mainViewModel: MainViewModel
     private lateinit var navigationHelper: NavigationHelper
+    private lateinit var sharedPreferenceHelper: SharedPreferenceHelper
     private val args: AddUserFragmentArgs by navArgs()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         navigationHelper = NavigationHelper(findNavController())
+        sharedPreferenceHelper = SharedPreferenceHelper(context)
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -43,9 +47,27 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
-        binding.tvTitle.text = Messages.getAddUserFragmentTitle(args.collectionName)
+        binding.tvTitle.text = if (args.isEdit) {
+            Messages.getEditUserFragmentTitle(args.collectionName)
+        } else {
+            Messages.getAddUserFragmentTitle(args.collectionName)
+        }
         hideActivityElements()
+        if (args.isEdit) {
+            setupValues()
+        }
         return binding.root
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupValues() {
+        val userModel = sharedPreferenceHelper.getSelectedPerson()!!
+        binding.etCompanyName.setText(userModel.companyName)
+        binding.etFirstName.setText(userModel.firstName)
+        binding.etLastName.setText(userModel.lastName)
+        binding.etAlias.setText(userModel.alias ?: Messages.BLANK)
+        binding.etMobileNumber.setText(userModel.mobileNumber.toString())
+        binding.etAddress.setText(userModel.address)
     }
 
     private fun hideActivityElements() {
@@ -97,7 +119,7 @@ class AddUserFragment : Fragment() {
                 lastName = lastName,
                 companyName = companyName,
                 alias = alias,
-                mobileNumber = mobileNumber.toInt(), // Assuming mobile number fits into Int range
+                mobileNumber = mobileNumber, // Assuming mobile number fits into Int range
                 address = address,
                 transactions = listOf()
             )
