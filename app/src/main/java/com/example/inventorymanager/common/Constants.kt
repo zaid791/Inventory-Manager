@@ -42,6 +42,8 @@ object Messages {
     const val YES = "Yes"
     const val NO = "No"
     const val ARE_YOU_SURE_DELETE = "Are you want to delete this user ?\nNote:- All the related transaction history will be deleted!"
+    const val ERROR_UPDATING_DOCUMENT = "Error Updating Document"
+    const val DOCUMENT_ID_ERROR = "Document ID is null or blank, cannot update."
     // Sample transactions for testing
     val transactionList = listOf(
         TransactionModel(
