@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.1"
 androidGifDrawable = "1.2.29"
+biometric = "1.1.0"
 circleimageview = "3.1.0"
 googleFirebaseBomVersion = "33.3.0"
 gson = "2.11.0"
@@ -24,6 +25,7 @@ swiperefreshlayout = "1.2.0-alpha01"
 
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
+androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }

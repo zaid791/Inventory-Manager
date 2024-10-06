@@ -63,5 +63,5 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.gson)
     implementation(libs.lottie)
-
+    implementation(libs.androidx.biometric)
 }
