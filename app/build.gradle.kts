@@ -62,4 +62,6 @@ dependencies {
     implementation (libs.circleimageview)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.gson)
+    implementation(libs.lottie)
+
 }
