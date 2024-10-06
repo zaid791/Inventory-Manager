@@ -40,35 +40,6 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupFragmentUi() {
-        with(binding) {
-            tvName.text = userDetailsModel.alias ?: userDetailsModel.firstName
-            tvFullName.text =
-                Messages.getFullName(userDetailsModel.firstName, userDetailsModel.lastName)
-            tvAddress.text = userDetailsModel.address
-            tvCompanyName.text = userDetailsModel.companyName
-            userDetailsModel.mobileNumber.toString().also { tvMobileNumber.text = it }
-            tvTotalAmountPaidAllTransactions.text =
-                Messages.getCurrencyString(userDetailsModel.totalAmountPaidAllTransactions)
-            tvTotalAmountPendingAllTransactions.text =
-                Messages.getCurrencyString(userDetailsModel.totalAmountPendingAllTransactions)
-            rvSupplierAmountHistory.apply {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = TransactionHistoryAdapter(
-                    transactions = userDetailsModel.transactions,
-                    commonViewModel = commonViewModel
-                )
-            }
-        }
-    }
-
-    private fun setupActivityUi() {
-        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
-        fab.isVisible = false
-        val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
-        bottomNavBar.isVisible = false
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
@@ -84,6 +55,35 @@ class DetailsFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun setupFragmentUi() {
+        with(binding) {
+            tvName.text = userDetailsModel.alias ?: userDetailsModel.firstName
+            tvFullName.text =
+                Messages.getFullName(userDetailsModel.firstName, userDetailsModel.lastName)
+            tvAddress.text = userDetailsModel.address
+            tvCompanyName.text = userDetailsModel.companyName
+            userDetailsModel.mobileNumber.toString().also { tvMobileNumber.text = it }
+            tvTotalAmountPaidAllTransactions.text =
+                Messages.getCurrencyString(userDetailsModel.totalAmountPaidAllTransactions)
+            tvTotalAmountPendingAllTransactions.text =
+                Messages.getCurrencyString(userDetailsModel.totalAmountPendingAllTransactions)
+            rvSupplierAmountHistory.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = TransactionHistoryAdapter(
+                    transactions = Messages.transactionList,
+                    commonViewModel = commonViewModel
+                )
+            }
+        }
+    }
+
+    private fun setupActivityUi() {
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        fab.isVisible = false
+        val bottomNavBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
+        bottomNavBar.isVisible = false
     }
 
     private fun showDetails(showDetails: Boolean) {
