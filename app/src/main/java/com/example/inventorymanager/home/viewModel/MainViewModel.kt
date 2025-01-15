@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class MainViewModel : ViewModel() {
 
@@ -20,7 +21,8 @@ class MainViewModel : ViewModel() {
                 for (document in documents) {
                     // Map Firestore document to UserDetailsModel
                     val user =
-                        document.toObject(UserDetailsModel::class.java).copy(documentId = document.id)
+                        document.toObject(UserDetailsModel::class.java)
+                            .copy(documentId = document.id)
                     // Add to list
                     userList.add(user)
                 }
@@ -60,7 +62,8 @@ class MainViewModel : ViewModel() {
         val db = FirebaseFirestore.getInstance()
 
         // Check if the model has an ID (or a field that holds the document ID in Firestore)
-        val documentId = model.documentId // Assuming 'id' is the field holding the Firestore document ID
+        val documentId =
+            model.documentId // Assuming 'id' is the field holding the Firestore document ID
 
         if (documentId != null) {
             // Reference the document and delete it
@@ -78,6 +81,36 @@ class MainViewModel : ViewModel() {
         } else {
             // If no ID is provided, log an error and return false
             Log.e(Messages.FIRESTORE_ERROR, "Document ID is null, cannot delete.")
+            onResult(false)
+        }
+    }
+    fun editPersonDetails(
+        updatedModel: UserDetailsModel,
+        collectionName: String,
+        onResult: (Boolean) -> Unit
+    ) {
+        // Firestore instance
+        val db = FirebaseFirestore.getInstance()
+
+        // Get the document ID
+        val documentId = updatedModel.documentId
+
+        if (!documentId.isNullOrBlank()) {
+            // Reference the document and update it
+            db.collection(collectionName).document(documentId)
+                .set(updatedModel, SetOptions.merge())  // Use merge to update only provided fields
+                .addOnSuccessListener {
+                    // Update was successful, return true
+                    onResult(true)
+                }
+                .addOnFailureListener { e ->
+                    // Log the error and return false
+                    Log.e(Messages.FIRESTORE_ERROR, Messages.ERROR_UPDATING_DOCUMENT, e)
+                    onResult(false)
+                }
+        } else {
+            // If no document ID is provided, log an error and return false
+            Log.e(Messages.FIRESTORE_ERROR, Messages.DOCUMENT_ID_ERROR)
             onResult(false)
         }
     }

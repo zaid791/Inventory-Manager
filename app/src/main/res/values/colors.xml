@@ -23,8 +23,7 @@
     <color name="colorOnSecondary">#000000</color>
 
     <!-- Other colors -->
-
     <color name="transparent">#00000000</color>
-
     <color name="light_grey">#EBE7E7</color>
+    <color name="teal">#30517C</color>
 </resources>

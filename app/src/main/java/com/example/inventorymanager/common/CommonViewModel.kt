@@ -6,10 +6,18 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.provider.Settings
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+
 
 class CommonViewModel : ViewModel() {
     fun startLoading(mainProgressBar: View, mainLayout: View) {
@@ -56,5 +64,48 @@ class CommonViewModel : ViewModel() {
         builder.show()
     }
 
+
+    fun vibrateDevice(context: Context, duration: Long = 500) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Use VibratorManager for Android 12 (API 31) and above
+            val vibratorManager =
+                context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibrator = vibratorManager.defaultVibrator
+
+            // Create and execute a one-shot vibration
+            val vibrationEffect =
+                VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.vibrate(vibrationEffect)
+        } else {
+            // Use the old Vibrator class for Android O to Android 11 (API 26 to 30)
+            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            val vibrationEffect =
+                VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.vibrate(vibrationEffect)
+        }
+    }
+
+
+    // Function to convert LocalDateTime to a readable string
+    fun formatDateTimeToReadableString(dateTime: LocalDateTime): String {
+        val formatter =
+            DateTimeFormatter.ofPattern(Patterns.DATE_TIME)  // Define the desired format
+        return dateTime.format(formatter)  // Format and return the result as a string
+    }
+
+    // Function to convert a readable string to LocalDateTime
+    fun parseReadableStringToDateTime(dateTimeString: String): LocalDateTime? {
+        return try {
+            val formatter =
+                DateTimeFormatter.ofPattern(Patterns.DATE_TIME)  // Define the same format
+            LocalDateTime.parse(
+                dateTimeString,
+                formatter
+            )  // Parse and return the LocalDateTime object
+        } catch (e: DateTimeParseException) {
+            e.printStackTrace()
+            null  // Return null if parsing fails (optional)
+        }
+    }
 
 }

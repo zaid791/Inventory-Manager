@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorymanager.R
 import com.example.inventorymanager.common.Actions
@@ -34,22 +33,24 @@ class BuyerSellerAdapter(
     inner class YourViewHolder(private val binding: ItemBuyerSellerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: UserDetailsModel) {
+        fun bind(userDetailsModel: UserDetailsModel) {
             binding.apply {
-                tvName.text = if (item.alias.isNullOrEmpty()) Messages.getFullName(
-                    item.firstName,
-                    item.lastName
-                ) else item.alias
-                tvAmountPaid.text = "₹"
-                tvAmountPending.text = "₹"
-                tvContact.text = item.mobileNumber.toString()
+                tvName.text = if (userDetailsModel.alias.isNullOrEmpty()) Messages.getFullName(
+                    userDetailsModel.firstName,
+                    userDetailsModel.lastName
+                ) else userDetailsModel.alias
+                tvAmountPaid.text =
+                    Messages.getCurrencyString(userDetailsModel.totalAmountPaidAllTransactions)
+                tvAmountPending.text =
+                    Messages.getCurrencyString(userDetailsModel.totalAmountPendingAllTransactions)
+                tvContact.text = userDetailsModel.mobileNumber.toString()
             }
-            binding.iconEdit.setOnClickListener { view ->
-                showPopupMenu(view, item)
+            binding.btnOptions.setOnClickListener { view ->
+                showPopupMenu(view, userDetailsModel)
             }
         }
 
-        private fun showPopupMenu(view: View?, item: UserDetailsModel) {
+        private fun showPopupMenu(view: View?, userDetailsModel: UserDetailsModel) {
             // Create a PopupMenu
             val popupMenu = PopupMenu(binding.root.context, view)
             popupMenu.menuInflater.inflate(R.menu.menu_popup, popupMenu.menu)
@@ -58,21 +59,17 @@ class BuyerSellerAdapter(
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.actionView -> {
-                        onAction(item, Actions.View)
-                        Toast.makeText(binding.root.context, "View", Toast.LENGTH_SHORT).show()
+                        onAction(userDetailsModel, Actions.View)
                         true
                     }
 
                     R.id.actionEdit -> {
-                        onAction(item, Actions.Edit)
-                        Toast.makeText(binding.root.context, "Edit", Toast.LENGTH_SHORT).show()
+                        onAction(userDetailsModel, Actions.Edit)
                         true
                     }
 
                     R.id.actionDelete -> {
-                        onAction(item, Actions.Delete)
-                        Toast.makeText(binding.root.context, "Delete", Toast.LENGTH_SHORT).show()
-
+                        onAction(userDetailsModel, Actions.Delete)
                         true
                     }
 

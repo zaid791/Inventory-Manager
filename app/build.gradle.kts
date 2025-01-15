@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.inventorymanager"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -60,4 +60,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.android.gif.drawable)
     implementation (libs.circleimageview)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.gson)
+    implementation(libs.lottie)
+    implementation(libs.androidx.biometric)
 }

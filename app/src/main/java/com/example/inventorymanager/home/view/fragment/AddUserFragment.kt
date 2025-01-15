@@ -1,5 +1,6 @@
 package com.example.inventorymanager.home.view.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.example.inventorymanager.R
 import com.example.inventorymanager.common.CommonViewModel
 import com.example.inventorymanager.common.Messages
 import com.example.inventorymanager.common.NavigationHelper
+import com.example.inventorymanager.common.SharedPreferenceHelper
 import com.example.inventorymanager.databinding.FragmentAddUserBinding
 import com.example.inventorymanager.home.model.UserDetailsModel
 import com.example.inventorymanager.home.viewModel.MainViewModel
@@ -30,11 +32,14 @@ class AddUserFragment : Fragment() {
     private val commonViewModel = CommonViewModel()
     private lateinit var mainViewModel: MainViewModel
     private lateinit var navigationHelper: NavigationHelper
+    private lateinit var sharedPreferenceHelper: SharedPreferenceHelper
     private val args: AddUserFragmentArgs by navArgs()
+    private lateinit var savedUserModel: UserDetailsModel
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         navigationHelper = NavigationHelper(findNavController())
+        sharedPreferenceHelper = SharedPreferenceHelper(context)
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -43,9 +48,27 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
-        binding.tvTitle.text = Messages.getAddUserFragmentTitle(args.collectionName)
+        binding.tvTitle.text = if (args.isEdit) {
+            Messages.getEditUserFragmentTitle(args.collectionName)
+        } else {
+            Messages.getAddUserFragmentTitle(args.collectionName)
+        }
         hideActivityElements()
+        if (args.isEdit) {
+            setupValues()
+        }
         return binding.root
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupValues() {
+        savedUserModel = sharedPreferenceHelper.getSelectedPerson()!!
+        binding.etCompanyName.setText(savedUserModel.companyName)
+        binding.etFirstName.setText(savedUserModel.firstName)
+        binding.etLastName.setText(savedUserModel.lastName)
+        binding.etAlias.setText(savedUserModel.alias ?: Messages.BLANK)
+        binding.etMobileNumber.setText(savedUserModel.mobileNumber.toString())
+        binding.etAddress.setText(savedUserModel.address)
     }
 
     private fun hideActivityElements() {
@@ -84,6 +107,7 @@ class AddUserFragment : Fragment() {
                 mobileNumberText.toLongOrNull()
             } else {
                 commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
+                commonViewModel.vibrateDevice(requireContext())
                 binding.etMobileNumber.error = Messages.MOBILE_NUMBER_LENGTH
                 null
             }
@@ -96,18 +120,44 @@ class AddUserFragment : Fragment() {
                 lastName = lastName,
                 companyName = companyName,
                 alias = alias,
-                mobileNumber = mobileNumber.toInt(), // Assuming mobile number fits into Int range
+                mobileNumber = mobileNumber, // Assuming mobile number fits into Int range
                 address = address,
-                transactions = listOf()
+                transactions = listOf(),
+                documentId = if (args.isEdit) savedUserModel.documentId else Messages.BLANK
             )
-            mainViewModel.addPerson(args.collectionName, userDetails) { isSuccess ->
-                if (isSuccess) {
-                    navigationHelper.navigateBackward()
-                } else {
-                    commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
-                    Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
-                        .show()
-                }
+            if (args.isEdit) {
+                editPerson(userDetails)
+            } else {
+                addPerson(userDetails)
+            }
+
+        }
+    }
+
+    private fun editPerson(userDetails: UserDetailsModel) {
+        mainViewModel.editPersonDetails(userDetails, args.collectionName) { isSuccess ->
+            if (isSuccess) {
+                navigationHelper.navigateBackward()
+                Toast.makeText(requireContext(), Messages.SUCCESS, Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
+                Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun addPerson(userDetails: UserDetailsModel) {
+        mainViewModel.addPerson(args.collectionName, userDetails) { isSuccess ->
+            if (isSuccess) {
+                navigationHelper.navigateBackward()
+                Toast.makeText(requireContext(), Messages.SUCCESS, Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                commonViewModel.stopLoading(binding.mainProgressBar, binding.mainLayout)
+                Toast.makeText(requireContext(), Messages.INTERNAL_ERROR, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
